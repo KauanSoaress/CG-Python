@@ -1,67 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
-def criar_img_preta(larg, alt):
-  # criando uma matriz totalmente preta na escala de 0 a 255
-  mat = np.zeros((alt, larg)) # Criando uma matriz de zeros
-  return mat
-
-def criar_img_branca(larg, alt):
-  # Criando uma matriz totalmente branca na escala de 0 a 255
-  mat = np.ones((alt, larg)) * 255  # Multiplicando por 255 para obter a escala de 0 a 255
-  return mat
-
-def set_pixel(mat, x, y, valor):
-  # Atribuindo um valor a um pixel da matriz
-  mat[y, x] = valor
-
-# Algoritmo para desenhar um seno na imagem, usando o algoritmo DDA
-def desenha_seno(img):
-  im = img
-
-  rows, cols = img.shape
-
-  xant = 0
-  yant = int(100*np.sin(xant/16) + rows/2)  # Initialize yant to the first y-value of the sine wave
-
-  # Desenhando um seno na matriz
-  for x in range(cols):
-    y = int(100*np.sin(x/16) + rows/2)
-    
-    im = dda(im, xant, yant, x , y, 255)
-
-    xant = x
-    yant = y
-
-  return img
-
-# Algoritmo DDA para desenhar uma linha na matriz
-def dda(img, xi, yi, xf, yf, intensidade):
-  im = img
-
-  dx = xf - xi
-  dy = yf - yi
-
-  passos = abs(dx) if abs(dx) > abs(dy) else abs(dy)
-
-  if passos == 0:  # If the initial and final points are the same, skip this iteration
-    return im
-
-  passo_x = dx / passos
-  passo_y = dy / passos
-
-  x = xi
-  y = yi
-
-  set_pixel(im, int(x), int(y), intensidade)
-
-  for i in range(passos):
-    x += passo_x
-    y += passo_y
-    set_pixel(im, int(x), int(y), intensidade)
-
-  return im
-
+from criar_img_preta import criar_img_preta
+from criar_img_branca import criar_img_branca
+from set_pixel import set_pixel
+from desenha_seno import desenha_seno
+from dda import dda
+from bresenham import bresenham
 
 # Testando as funções
 
