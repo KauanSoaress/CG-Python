@@ -1,5 +1,6 @@
 import numpy as np
 from dda import dda
+from dda_aa import dda_aa
 
 # Algoritmo para desenhar um seno na imagem, usando o algoritmo DDA
 def desenha_seno(img):
@@ -14,7 +15,7 @@ def desenha_seno(img):
   for x in range(cols):
     y = int(100*np.sin(x/16) + rows/2)
     
-    im = dda(im, xant, yant, x , y, 255)
+    im = dda_aa(im, xant, yant, x , y, 255)
 
     xant = x
     yant = y
